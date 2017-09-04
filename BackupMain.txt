@@ -1,0 +1,47 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args){
+		
+		BankAccountFrame baf = new BankAccountFrame();
+		
+		int accountnumber;
+		int balance;
+		String patronname;
+		
+		BankAccounts[] accounts = new BankAccounts[10];
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int acc_type;
+		System.out.println("Enter no of Accounts");
+		int noc = sc.nextInt();
+		for(int i = 0; i < noc; i++){
+			System.out.println("Enter 1 for Savings Account & 0 for Checking Account");
+			acc_type = sc.nextInt();
+			if(acc_type == 0){
+				accountnumber = sc.nextInt();
+				sc.nextLine();
+				balance = sc.nextInt();
+				sc.nextLine();
+				patronname = sc.nextLine();
+				accounts[i] = new CheckingAccount(balance, accountnumber, patronname);
+			}
+			else if(acc_type == 1){
+				accountnumber = sc.nextInt();
+				sc.nextLine();
+				balance = sc.nextInt();
+				sc.nextLine();
+				patronname = sc.nextLine();
+				accounts[i] = new SavingsAccount(balance, accountnumber, patronname);
+			}
+		}
+		sc.close();
+		System.out.println("Details of Accounts are: ");
+		for(int i = 0; i < noc; i++){
+			accounts[i].printBalance();
+		}
+	}
+}
